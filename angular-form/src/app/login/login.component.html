@@ -1,0 +1,19 @@
+<form class="example-container" [formGroup]="user" (ngSubmit)="onSubmit()" novalidate>
+  <mat-form-field>
+    <input matInput placeholder="Enter your email" formControlName="email">
+    <mat-error>{{ getErrorMessage()}} </mat-error>    
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Enter your password" [type]="'password'" 
+    formControlName="password"> 
+    <mat-error *ngIf="user.get('password').hasError('required') && user.get('password').touched">Password is required</mat-error>
+  </mat-form-field>  
+
+  <p>Form value: {{ user.value | json }}</p>
+  <p>Email value: {{ user.controls.email.status }}</p>
+  <p>Password value: {{ user.controls.password.status }}</p>
+  <button mat-raised-button color="primary" type="submit">Login</button>
+</form>
+
+
